@@ -28,25 +28,43 @@ import {
 import { Comment, Tag, User } from "../types";
 import { highlightText } from "../shared/lib/highlight";
 import { Post } from "../entities/post";
+import { usePostStore } from "../entities/post/model/store";
 
 const PostsManager = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
 
+  const {
+    posts,
+    total,
+    loading,
+    selectedPost,
+    skip,
+    limit,
+    // searchQuery,
+    // selectedTag,
+    // sortBy,
+    // sortOrder,
+    setPosts,
+    setTotal,
+    setLoading,
+    setSelectedPost,
+    setSkip,
+    setLimit,
+    // setSearchQuery,
+    // setSelectedTag,
+    // setSortBy,
+    // setSortOrder,
+  } = usePostStore();
+
   // 상태 관리
-  const [posts, setPosts] = useState([]);
-  const [total, setTotal] = useState(0);
-  const [skip, setSkip] = useState(parseInt(queryParams.get("skip") || "0"));
-  const [limit, setLimit] = useState(parseInt(queryParams.get("limit") || "10"));
   const [searchQuery, setSearchQuery] = useState(queryParams.get("search") || "");
-  const [selectedPost, setSelectedPost] = useState<Post | null>(null);
   const [sortBy, setSortBy] = useState(queryParams.get("sortBy") || "");
   const [sortOrder, setSortOrder] = useState(queryParams.get("sortOrder") || "asc");
   const [showAddDialog, setShowAddDialog] = useState(false);
   const [showEditDialog, setShowEditDialog] = useState(false);
   const [newPost, setNewPost] = useState({ title: "", body: "", userId: 1 });
-  const [loading, setLoading] = useState(false);
   const [tags, setTags] = useState([]);
   const [selectedTag, setSelectedTag] = useState(queryParams.get("tag") || "");
   const [comments, setComments] = useState({});
