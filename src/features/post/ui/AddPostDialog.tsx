@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Button, Dialog, DialogContent, DialogHeader, DialogTitle, Input, Textarea } from "../../../shared/ui";
 import { Post } from "../../../entities/post";
 
@@ -6,15 +5,11 @@ interface AddPostDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onsubmit: (post: Post) => void;
+  newPost: Partial<Post>;
+  setNewPost: (post: Post) => void;
 }
 
-export const AddPostDialog = ({ open, onOpenChange, onsubmit }: AddPostDialogProps) => {
-  const [newPost, setNewPost] = useState({ title: "", body: "", userId: 1 });
-
-  const handleSubmit = () => {
-    onsubmit(newPost);
-    setNewPost({ title: "", body: "", userId: 1 });
-  };
+export const AddPostDialog = ({ open, onOpenChange, onsubmit, newPost, setNewPost }: AddPostDialogProps) => {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
@@ -39,7 +34,7 @@ export const AddPostDialog = ({ open, onOpenChange, onsubmit }: AddPostDialogPro
             value={newPost.userId}
             onChange={(e) => setNewPost({ ...newPost, userId: Number(e.target.value) })}
           />
-          <Button onClick={handleSubmit}>게시물 추가</Button>
+          <Button onClick={onsubmit}>게시물 추가</Button>
         </div>
       </DialogContent>
     </Dialog>
