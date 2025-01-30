@@ -8,8 +8,8 @@ interface PostStore {
   selectedPost: Post | null;
 
   // TODO: pagination으로 묶기
-  skip: string;
-  limit: string;
+  skip: number;
+  limit: number;
 
   // TODO: filters로 묶기
   searchQuery: string;
@@ -21,8 +21,8 @@ interface PostStore {
   setTotal: (total: number) => void;
   setLoading: (isLoading: boolean) => void;
   setSelectedPost: (post: Post | null) => void;
-  setSkip: (skip: string) => void;
-  setLimit: (limit: string) => void;
+  setSkip: (skip: number) => void;
+  setLimit: (limit: number) => void;
   setSearchQuery: (query: string) => void;
   setSelectedTag: (tag: string) => void;
   setSortBy: (sortBy: string) => void;
@@ -36,8 +36,8 @@ export const usePostStore = create<PostStore>((set) => ({
   loading: false,
   selectedPost: null,
 
-  skip: "0",
-  limit: "10",
+  skip: 0,
+  limit: 10,
   searchQuery: "",
   selectedTag: "",
   sortBy: "",
@@ -48,8 +48,8 @@ export const usePostStore = create<PostStore>((set) => ({
   setTotal: (total: number) => set({ total }),
   setLoading: (isLoading: boolean) => set({ loading: isLoading }),
   setSelectedPost: (post: Post | null) => set({ selectedPost: post }),
-  setSkip: (skip: string) => set({ skip }),
-  setLimit: (limit: string) => set({ limit }),
+  setSkip: (skip: number) => set({ skip }),
+  setLimit: (limit: number) => set({ limit }),
   setSearchQuery: (query: string) => set({ searchQuery: query }),
   setSelectedTag: (tag: string) => set({ selectedTag: tag }),
   setSortBy: (sortBy: string) => set({ sortBy: sortBy }),

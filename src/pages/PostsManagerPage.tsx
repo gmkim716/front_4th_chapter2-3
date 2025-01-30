@@ -33,7 +33,6 @@ import { usePostStore } from "../entities/post/model/store";
 const PostsManager = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
 
   const {
     posts,
@@ -42,31 +41,27 @@ const PostsManager = () => {
     selectedPost,
     skip,
     limit,
-    // searchQuery,
-    // selectedTag,
-    // sortBy,
-    // sortOrder,
+    searchQuery,
+    selectedTag,
+    sortBy,
+    sortOrder,
     setPosts,
     setTotal,
     setLoading,
     setSelectedPost,
     setSkip,
     setLimit,
-    // setSearchQuery,
-    // setSelectedTag,
-    // setSortBy,
-    // setSortOrder,
+    setSearchQuery,
+    setSelectedTag,
+    setSortBy,
+    setSortOrder,
   } = usePostStore();
 
   // 상태 관리
-  const [searchQuery, setSearchQuery] = useState(queryParams.get("search") || "");
-  const [sortBy, setSortBy] = useState(queryParams.get("sortBy") || "");
-  const [sortOrder, setSortOrder] = useState(queryParams.get("sortOrder") || "asc");
   const [showAddDialog, setShowAddDialog] = useState(false);
   const [showEditDialog, setShowEditDialog] = useState(false);
   const [newPost, setNewPost] = useState({ title: "", body: "", userId: 1 });
   const [tags, setTags] = useState([]);
-  const [selectedTag, setSelectedTag] = useState(queryParams.get("tag") || "");
   const [comments, setComments] = useState({});
   const [selectedComment, setSelectedComment] = useState(null);
   const [newComment, setNewComment] = useState({ body: "", postId: null, userId: 1 });
@@ -75,6 +70,10 @@ const PostsManager = () => {
   const [showPostDetailDialog, setShowPostDetailDialog] = useState(false);
   const [showUserModal, setShowUserModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    console.log("sortOrder", sortOrder);
+  }, [sortOrder]);
 
   // URL 업데이트 함수
   const updateURL = () => {
