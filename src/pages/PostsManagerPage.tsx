@@ -1,29 +1,29 @@
 import { useEffect, useState } from "react";
 import { Edit2, MessageSquare, Plus, Search, ThumbsDown, ThumbsUp, Trash2 } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { Button } from "../shared/ui/Button";
 import {
-  Button,
+  Table,
+  TableBody,
+  TableHeader,
+  TableHead,
+  TableRow,
+  TableCell,
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
+  Textarea,
   Input,
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-  Textarea,
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
 } from "../shared/ui";
 import { Comment, Tag, User } from "../types";
 import { highlightText } from "../shared/lib/highlight";
