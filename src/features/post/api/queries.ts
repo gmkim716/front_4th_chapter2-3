@@ -1,6 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { postApi } from "../../../entities/post";
 
+/**
+ * 게시물 목록 조회 query
+ */
 export const usePostsQuery = (limit: number, skip: number) => {
   return useQuery({
     queryKey: ["posts", limit, skip],
@@ -8,6 +11,9 @@ export const usePostsQuery = (limit: number, skip: number) => {
   });
 };
 
+/**
+ * 태그 목록 조회
+ */
 export const useTagsQuery = () => {
   return useQuery({
     queryKey: ["tags"],
@@ -15,6 +21,9 @@ export const useTagsQuery = () => {
   });
 };
 
+/**
+ * 태그별 게시물 목록 조회
+ */
 export const usePostsByTagQuery = (tag: string) => {
   return useQuery({
     queryKey: ["posts", tag],
