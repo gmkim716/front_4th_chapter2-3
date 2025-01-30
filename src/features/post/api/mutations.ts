@@ -33,13 +33,13 @@ export const useUpdatePostMutation = () => {
 /**
  * 게시물 삭제 mutation
  */
-export const useDeletePostMutation = () => {
+export const useDeletePostMutation = (postId: number) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (postId: number) => postApi.deletePost(postId),
-    onSuccess: (_, deletedPostId: number) => {
-      queryClient.removeQueries({ queryKey: ["posts", deletedPostId] }); // 특정 게시물의 상세 캐시 제거
+    mutationFn: () => postApi.deletePost(postId),
+    onSuccess: () => {
+      queryClient.removeQueries({ queryKey: ["posts", postId] }); // 특정 게시물의 상세 캐시 제거
       queryClient.invalidateQueries({ queryKey: ["posts"] }); // 게시물 목록 캐시 무효화
     },
   });
