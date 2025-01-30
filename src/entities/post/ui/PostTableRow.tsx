@@ -71,7 +71,6 @@ export const PostTableRow = ({
       <TableCell>
         <div className="flex items-center gap-2">
           <Button variant="ghost" size="sm" onClick={() => openPostDetail(post)}>
-            {/* <Button variant="ghost" size="sm" onClick={() => openPostDetail(post)}> */}
             <MessageSquare className="w-4 h-4" />
           </Button>
           <Button
